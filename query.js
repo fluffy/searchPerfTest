@@ -44,8 +44,13 @@ var main = function () {
         },
         // do querry  
         function (callback) {
+            console.time("DB-Query-first");
+            console.time("DB-Query-last");
             client.eachRow('SELECT dest FROM testa WHERE id IN ?;', [ s ], { prepare: true }, function (row, result) {
                 //console.log('DB row result =  ' + JSON.stringify(result));
+                if ( row === 0 ) {
+                    console.timeEnd("DB-Query-first");
+                }
                 console.log("row[" + row + "] = " + result.dest.low);
             }, function (err, result) {
                 if (err) {
@@ -53,6 +58,7 @@ var main = function () {
                     finish(-1);
                 } else {
                     //console.log('DB result =  ' + JSON.stringify(result));
+                    console.timeEnd("DB-Query-last");
                     callback(null);
                 }
             });
