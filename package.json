@@ -1,0 +1,10 @@
+{
+    "name": "searchPerfTest",
+    "description": "Cassandra Perf Test",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "async": "0.9.0",
+        "crc": "3.2.1",
+        "cassandra-driver": "2.0.1"  }
+}
