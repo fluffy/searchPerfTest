@@ -34,3 +34,9 @@ words
 words-count
 words-locations
 words-sorted
+words-uniq
+words-uniq-crc32
+words-uniq-sha16
+words-uniq-sha32
+words-uniq-sha64
+
