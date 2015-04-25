@@ -6,6 +6,7 @@
     "dependencies": {
         "async": "^0.9",
         "crc": "^3.2",
+        "slack-node": "^0.1",
         "crypto": "^0.0.3",
         "cassandra-driver": "^2.0"  }
 }
