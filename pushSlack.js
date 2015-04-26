@@ -12,8 +12,8 @@ var webHookUri = "https://hooks.slack.com/services/T04JA3THV/B04JAPT4K/7BxwcLQiT
 var slack = new Slack();
 slack.setWebhook(webHookUri);
 
-var post = function (data,callback) {
-    console.log( data );
+var post = function (data, callback) {
+    console.log(data);
     /*
 curl -X POST --data-urlencode 'payload={"channel": "#lots-of-text", "username": "webhookbot", "text": "message 3"}' https://hooks.slack.com/services/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  
     */
@@ -22,8 +22,8 @@ curl -X POST --data-urlencode 'payload={"channel": "#lots-of-text", "username": 
         channel: "#lots-of-text",
         username: "Fluffy Node Bot",
         text: data
-    }, function(err, response) {
-        if ( err || response.statusCode != 200 ) {
+    }, function (err, response) {
+        if (err || (!response) || (response.statusCode !== 200)) {
             console.log(response);
         }
         callback();
@@ -31,20 +31,20 @@ curl -X POST --data-urlencode 'payload={"channel": "#lots-of-text", "username": 
 };
 
 var main = function () {
-    var i, len, words, word, hashCrc32, hashSha, hashSha64, hashSha32, hashSha16, sha;
+    var words;
 
     //args = process.argv.slice(2);
 
-    words = fs.readFileSync("junk").toString().split(/\r?\n/);
+    words = fs.readFileSync("words").toString().split(/\r?\n/);
 
-    async.eachSeries(words, post, function(err,results){
-        if(err){ 
+    async.eachSeries(words, post, function (err, results) {
+        if (err) {
             console.log(err);
+            console.log(results);
         } else {
             console.log('All OK');
         }
     });
-   
 };
 
 
